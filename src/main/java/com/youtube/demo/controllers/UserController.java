@@ -49,6 +49,19 @@ public class UserController {
 		return this.userService.findAll();
 	}
 	
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+	public void deleteUser(@RequestBody String userJson) {
+		try {
+			this.mapper = new ObjectMapper();
+			User user = this.mapper.readValue(userJson, User.class);
+			if(user.getId()!=null) {
+				this.userService.deleteUser(user);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private boolean validate(User user) {
 		if(!Tools.isStringNotNull(user.getFirstName())) {
 			return false;
