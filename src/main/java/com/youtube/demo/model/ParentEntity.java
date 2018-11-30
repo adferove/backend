@@ -18,8 +18,11 @@ public class ParentEntity implements Serializable{
 
 	private static final long serialVersionUID = 9022132952590357619L;
 	
+	/**
+	 *  It will only work if your id column is declared as SERIAL or BIGSERIAL types.
+	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id", unique=true, nullable=false)
 	private Long id;
 
