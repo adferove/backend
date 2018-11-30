@@ -1,6 +1,7 @@
 package com.youtube.demo.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,11 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return new RestResponse(HttpStatus.OK.value(), "Operacion exitosa");
+	}
+	
+	@RequestMapping(value = "/getUsers", method = RequestMethod.GET)
+	public List<User> getUsers(){
+		return this.userService.findAll();
 	}
 	
 	private boolean validate(User user) {
